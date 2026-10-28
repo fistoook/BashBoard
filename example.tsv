@@ -1,6 +1,25 @@
 name	host	port	protocol
-Cloudflare HTTPS	1.1.1.1	443	https
-Cloudflare Backup	1.0.0.1	443	https
-Google DNS TCP	8.8.8.8	53	tcp
-Quad9 DNS TCP	9.9.9.9	53	tcp
-Offline Test	192.168.1.100	8006	https
+Example-HTTP	example.com	80	http
+Example-HTTPS	example.com	443	https
+GitHub-Web	github.com	443	https
+GitLab-Web	gitlab.com	443	https
+Python-Web	www.python.org	443	https
+Debian-Web	www.debian.org	443	https
+GNU-Web	www.gnu.org	443	https
+Kernel-Web	kernel.org	443	https
+Cloudflare-Web	cloudflare.com	443	https
+NeverSSL-HTTP	neverssl.com	80	http
+Example-TCP-80	example.com	80	tcp
+GitHub-TCP-443	github.com	443	tcp
+Cloudflare-TCP-443	1.1.1.1	443	tcp
+Cloudflare-DNS-TCP	1.1.1.1	53	tcp
+Google-DNS-TCP	8.8.8.8	53	tcp
+Cloudflare-DNS	1.1.1.1	53	dns
+Google-DNS	8.8.8.8	53	dns
+Quad9-DNS	9.9.9.9	53	dns
+OpenDNS	208.67.222.222	53	dns
+GitHub-SSH	github.com	22	ssh
+GitHub-SSH-443	ssh.github.com	443	ssh
+GitLab-SSH	gitlab.com	22	ssh
+Loopback-Closed	127.0.0.1	65534	tcp
+Reserved-Test-IP	192.0.2.123	443	tcp

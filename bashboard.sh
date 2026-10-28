@@ -38,6 +38,8 @@ display_services() {
         #skip header
         [[ $name == "name" ]] && continue
 
+	protocol="${protocol%$'\r'}" # for widnows comptability
+
         # check whether host is reachable
         if check_host "$host"; then
             reachable="yes"
@@ -48,7 +50,7 @@ display_services() {
         fi
 
 	# check whether the service is resopnding
-        if check_service "$host" "$port"; then
+        if check_service "$host" "$port" "$protocol"; then
             status="UP"
             status_color="$GREEN"
         else
@@ -65,6 +67,8 @@ display_services() {
 
 }
 
+# Ping the service and see if it replies - check if your vms are down.
+# And, I guess, you can use it to test firewall rules! go nuts boys!
 check_host() {
     local host="$1"
 
@@ -81,18 +85,86 @@ check_host() {
     fi
 }
 
+# Instead of pinging, we open a good ol' TCP connection
+# I love them handsahkes. test for open ports!
 check_service() {
     local host="$1"
     local port="$2"
+    local protocol="$3"
+
+    case "$protocol" in
+        tcp)
+            check_tcp "$host" "$port"
+            ;;
+        http|https)
+            check_http "$host" "$port" "$protocol"
+            ;;
+        dns)
+            check_dns "$host" "$port"
+            ;;
+        ssh)
+            check_ssh "$host" "$port"
+            ;;
+        *)
+            return 2
+            ;;
+    esac
+}
+
+# Instead of pinging, we open a good ol' TCP connection
+# I love them handsahkes. test for open ports!
+check_tcp() {
+    local host="$1"
+    local port="$2"
+
     if [[ "$os" == MINGW* ]]; then
-	#windows
-	ncat.exe -z -w 2 "$host" "$port" < /dev/null > /dev/null 2>&1
+        # windows
+        ncat.exe -z -w 2 "$host" "$port" < /dev/null > /dev/null 2>&1
+
     elif [[ "$os" == Linux ]]; then
-	# linux
-	nc -z -w 2 "$host" "$port" < /dev/null > /dev/null 2>&1
+        # linux
+        nc -z -w 2 "$host" "$port" < /dev/null > /dev/null 2>&1
+
     else
-	return 2
+        return 2 # I am soory I never used anything else :)
     fi
+}
+
+# Check if your web servers are up and responding
+# My personal favorite
+check_http() {
+    local host="$1"
+    local port="$2"
+    local protocol="$3"
+
+    curl -fsS --connect-timeout 2 --max-time 5 \
+        -o /dev/null \
+        "${protocol}://${host}:${port}/" \
+        < /dev/null 2> /dev/null
+}
+
+# If you are rocking a personal dns server, kudos to you man!
+# But once a simple network toubleshooting turns into a nightmare...
+# Remember: it is always dns :)
+check_dns() {
+    local host="$1"
+    local port="$2"
+
+    dig @"$host" -p "$port" example.com A \
+        +time=2 +tries=1 +short \
+        < /dev/null 2> /dev/null |
+        grep -Eq '^[0-9]{1,3}(\.[0-9]{1,3}){3}$'
+}
+
+# sshing make your life easier.
+# just like this bashbaord.
+check_ssh() {
+    local host="$1"
+    local port="$2"
+
+    ssh-keyscan -T 2 -p "$port" "$host" \
+        < /dev/null 2> /dev/null |
+        grep -Eq '^[^#[:space:]]+[[:space:]]+(ssh-|ecdsa-)'
 }
 
 while :; do
