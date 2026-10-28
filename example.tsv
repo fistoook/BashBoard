@@ -3,4 +3,4 @@ Cloudflare HTTPS	1.1.1.1	443	https
 Cloudflare Backup	1.0.0.1	443	https
 Google DNS TCP	8.8.8.8	53	tcp
 Quad9 DNS TCP	9.9.9.9	53	tcp
-Offline Test	192.0.2.10	8006	https
+Offline Test	192.168.1.100	8006	https
