@@ -1,9 +1,0 @@
-* text=auto
-.gitattributes text eol=lf
-*.sh text eol=lf
-bashboard text eol=lf
-*.py text eol=lf
-*.md text eol=lf
-*.yml text eol=lf
-*.tsv text eol=lf
-LICENSE text eol=lf
