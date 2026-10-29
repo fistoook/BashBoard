@@ -46,3 +46,9 @@ https://fistook.dev/posts/7d8f0715-aad9-4bad-8466-56dd87e6a20c/
 ---
 
 *have a bashed day!*
+
+---
+
+## Run BashBoard v1.0
+
+See the [setup and usage guide](docs/USAGE.md) for dependencies, configuration, command-line options, and how the parallel snapshot works. Release changes are in [CHANGELOG.md](CHANGELOG.md).
