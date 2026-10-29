@@ -1,8 +1,8 @@
 # BashBoard
 
-BashBoard is a dashboard **writtenentirely  in Bash**, used for monitoring services in a homelab.
+BashBoard is a dashboard **written entirely  in Bash**, used for monitoring services in a homelab.
 
-> You come home after a long day at work, excited for a plex movie night, and find down that your plex server is down...
+> You come home after a long day at work, excited for a plex movie night, and find out that your plex server is down...
 >
 > **FOR 3 DAYS.**
 >
@@ -21,7 +21,7 @@ It checks all of your services, on multiple levels:
 
 You provide the program at `./bashboard` an input file, in the same directory, `config.tsv` (tab seperated values).
 
-It might take you some time to build it and map our you homelab, but man will it make your life easir - even if you never even use the BashBoard. just having an IP mpa of your homelab is a huge time saver when troubleshooting.
+It might take you some time to build it and map out your homelab, but man will it make your life easir - even if you never even use the BashBoard. just having an IP map of your homelab is a huge time saver when troubleshooting.
 
 You get a **beautiful live updating dashboard.** that
 
