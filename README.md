@@ -1,18 +1,48 @@
-BashBoard is a dashboard used for monitoring services in a homelab.
+# BashBoard
 
-It features reachability checking for your vms with pings, 
-and it checks whether specific services running on ports respond.
+BashBoard is a dashboard **writtenentirely  in Bash**, used for monitoring services in a homelab.
 
-The input is a config file in the format os .tsv, tab spearted.
-The results are outputed to your terminal, and are updated every second.
+> You come home after a long day at work, excited for a plex movie night, and find down that your plex server is down...
+>
+> **FOR 3 DAYS.**
+>
+> Eyes half closed, you have to troubleshoot, and troubleshoot, and troubleshoot...
 
-The project was built with the goal of developing and playing around in bash.
-Bash scripting, I believe, is a super awesome skill that, if you are an ethical hacker, 
-devops engineer, or just love playing around with linux or homelabing, will make your
-life soooo much easier.
+## Enough! BashBoard is here to save you.
 
-If you want to dive deeper and find out what can ACTULLY be done with bash, 
-you can check out my introduction to bash here -
- https://fistook.dev/posts/7d8f0715-aad9-4bad-8466-56dd87e6a20c/
+It checks all of your services, on multiple levels:
 
-Have fun!
+1) **Is the vm even reachable?** maybe an unexpected shutdown?
+2) **or maybe the vm is fine, and the service is down?** we will check that too!
+
+**No more surprises.**
+
+---
+
+You provide the program at `./bashboard` an input file, in the same directory, `config.tsv` (tab seperated values).
+
+It might take you some time to build it and map our you homelab, but man will it make your life easir - even if you never even use the BashBoard. just having an IP mpa of your homelab is a huge time saver when troubleshooting.
+
+You get a **beautiful live updating dashboard.** that
+
+1) will save your ass
+2) will save your ass
+3) looks cool
+
+### What else do you need?
+
+---
+
+Alright enough propagnda, beacuse the real goal in mind was to **learn and develop in bash**.
+
+> **To see - what can be done.**
+
+and oh, turns out... **A lot.** bash is **Powerfull.**
+
+If you want to dive deeper and find out what can be done with bash, and how you can do it too - you can check out my introduction to bash here -
+
+https://fistook.dev/posts/7d8f0715-aad9-4bad-8466-56dd87e6a20c/
+
+---
+
+*have a bashed day!*
